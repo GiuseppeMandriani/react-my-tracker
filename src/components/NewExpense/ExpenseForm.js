@@ -2,7 +2,7 @@ import { useState } from 'react';
 
 import './ExpenseForm.css';
 
-const ExpenseForm = () => {
+const ExpenseForm = (props) => {
     // Primo Metodo più utilizzato
 
     const [enteredTitle, setEnteredTitle] = useState('');
@@ -53,11 +53,17 @@ const ExpenseForm = () => {
             date: new Date(enteredDate),
         };
 
-        console.log(expenseData);
+        props.onSaveitem(expenseData)
+
+        // console.log(expenseData);
         setEnteredTitle('');
         setEnteredAmount('');
         setEnteredDate('');
+
+
     };
+
+
 
     return (
         <form onSubmit={submitHandler}>
