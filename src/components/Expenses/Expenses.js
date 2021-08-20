@@ -4,6 +4,7 @@ import './Expenses.css';
 import ExpensesFilter from './ExpensesFilter';
 import { useState } from 'react';
 import ExpensesList from './ExpensesList';
+import ExpensesChart from './ExpensesChart';
 
 const Expenses = props => {
     const [filteredYear, setFilteredYear] = useState(new Date().getFullYear());
@@ -14,9 +15,9 @@ const Expenses = props => {
     );
 
     const getValue = value => {
-        console.log(value);
+        // console.log(value);
         setFilteredYear(value);
-        console.log('filterd ', filteredYear);
+        // console.log('filterd ', filteredYear);
     };
 
     // Metodo 1
@@ -41,6 +42,7 @@ const Expenses = props => {
 
                 {/* Metodo Pulito 1 */}
                 {/* {expensesContent} */}
+                <ExpensesChart  expenses={expensesFiltered}/>
 
                 <ExpensesList items={expensesFiltered}/>
 
