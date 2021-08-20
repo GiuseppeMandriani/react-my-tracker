@@ -16,11 +16,12 @@ const Expenses = props => {
         <div>
             <Card className="expenses">
                 <ExpensesFilter selected={filteredYear} onDropDown={getValue} />
-                {props.items.map(e => (
+                {props.items.map(expenses => (
                     <ExpenseItem
-                        title={e.title}
-                        amount={e.amount}
-                        date={e.date}
+                    key = {expenses.id}
+                        title={expenses.title}
+                        amount={expenses.amount}
+                        date={expenses.date}
                     />
                 ))}
             </Card>
