@@ -1,8 +1,9 @@
-import ExpenseItem from './ExpenseItem';
+// import ExpenseItem from './ExpenseItem';
 import Card from '../UI/Card';
 import './Expenses.css';
 import ExpensesFilter from './ExpensesFilter';
 import { useState } from 'react';
+import ExpensesList from './ExpensesList';
 
 const Expenses = props => {
     const [filteredYear, setFilteredYear] = useState(new Date().getFullYear());
@@ -20,18 +21,18 @@ const Expenses = props => {
 
     // Metodo 1
 
-    let expensesContent = <p className="not-element">No Element Found</p>;
+    // let expensesContent = <p className="not-element">No Element Found</p>;
 
-    if (expensesFiltered.length > 0) {
-        expensesContent = expensesFiltered.map(expenses => (
-            <ExpenseItem
-                key={expenses.id}
-                title={expenses.title}
-                amount={expenses.amount}
-                date={expenses.date}
-            />
-        ));
-    }
+    // if (expensesFiltered.length > 0) {
+    //     expensesContent = expensesFiltered.map(expenses => (
+    //         <ExpenseItem
+    //             key={expenses.id}
+    //             title={expenses.title}
+    //             amount={expenses.amount}
+    //             date={expenses.date}
+    //         />
+    //     ));
+    // }
 
     return (
         <div>
@@ -39,7 +40,9 @@ const Expenses = props => {
                 <ExpensesFilter selected={filteredYear} onDropDown={getValue} />
 
                 {/* Metodo Pulito 1 */}
-                {expensesContent}
+                {/* {expensesContent} */}
+
+                <ExpensesList items={expensesFiltered}/>
 
                 {/* Metodo 2 */}
 
