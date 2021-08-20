@@ -7,18 +7,24 @@ import { useState } from 'react';
 const Expenses = props => {
     const [filteredYear, setFilteredYear] = useState(new Date().getFullYear());
 
+    const expensesFiltered = props.items.filter(
+        element => element.date.getFullYear() == filteredYear
+    );
+
     const getValue = value => {
         console.log(value);
         setFilteredYear(value);
         console.log('filterd ', filteredYear);
     };
+
     return (
         <div>
             <Card className="expenses">
                 <ExpensesFilter selected={filteredYear} onDropDown={getValue} />
-                {props.items.map(expenses => (
+
+                {expensesFiltered.map(expenses => (
                     <ExpenseItem
-                    key = {expenses.id}
+                        key={expenses.id}
                         title={expenses.title}
                         amount={expenses.amount}
                         date={expenses.date}
