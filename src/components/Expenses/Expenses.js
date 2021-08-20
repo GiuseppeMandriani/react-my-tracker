@@ -8,7 +8,8 @@ const Expenses = props => {
     const [filteredYear, setFilteredYear] = useState(new Date().getFullYear());
 
     const expensesFiltered = props.items.filter(
-        element => element.date.getFullYear() == filteredYear
+        element =>
+            parseInt(element.date.getFullYear()) === parseInt(filteredYear)
     );
 
     const getValue = value => {
@@ -17,19 +18,43 @@ const Expenses = props => {
         console.log('filterd ', filteredYear);
     };
 
+    // Metodo 1
+
+    let expensesContent = <p className="not-element">No Element Found</p>;
+
+    if (expensesFiltered.length > 0) {
+        expensesContent = expensesFiltered.map(expenses => (
+            <ExpenseItem
+                key={expenses.id}
+                title={expenses.title}
+                amount={expenses.amount}
+                date={expenses.date}
+            />
+        ));
+    }
+
     return (
         <div>
             <Card className="expenses">
                 <ExpensesFilter selected={filteredYear} onDropDown={getValue} />
 
-                {expensesFiltered.map(expenses => (
-                    <ExpenseItem
-                        key={expenses.id}
-                        title={expenses.title}
-                        amount={expenses.amount}
-                        date={expenses.date}
-                    />
-                ))}
+                {/* Metodo Pulito 1 */}
+                {expensesContent}
+
+                {/* Metodo 2 */}
+
+                {/* {expensesFiltered.length === 0 ? (
+                    <p className="not-element">No Element Found</p>
+                ) : (
+                    expensesFiltered.map(expenses => (
+                        <ExpenseItem
+                            key={expenses.id}
+                            title={expenses.title}
+                            amount={expenses.amount}
+                            date={expenses.date}
+                        />
+                    ))
+                )} */}
             </Card>
         </div>
     );
